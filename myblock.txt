@@ -5,3 +5,7 @@ ubisoft.com
 ubi.com
 ubisoft.org
 ubisoftconnect.com
+chatgpt.com
+openai.com
+claude.ai
+anthropic.com
