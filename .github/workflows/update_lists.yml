@@ -6,6 +6,7 @@ on:
       - '*.py'
       - 'requirements.txt'
       - 'dns_resolvers.yml'
+      - 'myblock.txt'
       - '.github/workflows/update_lists.yml'
   workflow_dispatch:
 
