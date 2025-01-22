@@ -3,9 +3,14 @@
 aria2c -o youtubeparsed --allow-overwrite \
   'https://raw.githubusercontent.com/nickspaargaren/no-google/master/categories/youtubeparsed'
 
-echo "$(grep -oP '^([\w\d.-]+\.)+([\w\d.-]+)?' youtubeparsed)" > youtubeparsed
+aria2c -o facebook --allow-overwrite \
+   'https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all'
 
-parallel -P "$(nproc)" -j0 -a youtubeparsed '\
+echo "$(grep -oP '^([\w\d.-]+\.)+([\w\d.-]+)?' youtubeparsed)" > parsed
+echo "$(grep -oP '(?<=0\.0\.0\.0 ).*' facebook)" >> parsed
+cat myblock.txt >> parsed
+
+parallel -P "$(nproc)" -j0 -a parsed '\
 line="{}"
 dig +short A $line | grep -v "\.$" >> ipv4_list.txt
 dig +short AAAA $line | grep -v "\.$" >> ipv6_list.txt

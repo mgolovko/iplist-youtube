@@ -95,6 +95,16 @@ def download_youtubeparsed():
   url = 'https://raw.githubusercontent.com/nickspaargaren/no-google/master/categories/youtubeparsed'
   download(url, 'youtubeparsed')
 
+def download_facebook():
+  url = 'https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all'
+  download(url, 'facebook')
+
+def join_ips():
+  with open("parsed", "w") as outfile:
+    for file in ['youtubeparsed', 'facebook', 'myblock.txt']:
+      with open(file, "r") as infile:
+        outfile.write(infile.read())
+        outfile.write("\n")
 
 def get_coroutines(
   ipv4List: list[IPv4Address],
@@ -104,13 +114,13 @@ def get_coroutines(
   coroutines = []
 
   # open the youtubeparsed file
-  with open('youtubeparsed', mode='r', encoding='utf-8') as f:
+  with open('parsed', mode='r', encoding='utf-8') as f:
 
     # for each url in the file
     for url in f.readlines():
 
       # strip whitespaces and '.'
-      url = url.strip()
+      url = url.strip().removeprefix("0.0.0.0 ")
 
       # ignore empty lines
       if url == '':
@@ -155,7 +165,9 @@ async def main():
 
   # download youtubeparsed
   download_youtubeparsed()
-
+  download_facebook()
+  join_ips()
+  
   # get ip fetcher
   ip_fetcher = get_ip_fetcher()
 

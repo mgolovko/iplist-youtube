@@ -3,3 +3,5 @@
 !.gitignore
 youtubeparsed
 __pycache__/
+facebook
+parsed
