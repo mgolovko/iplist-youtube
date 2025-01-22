@@ -47,6 +47,12 @@ jobs:
       - name: Generating CIDR Lists
         run: python3 ./generate_cidr.py
 
+      - name: Generating Amnezia json
+         run: ./update_awg.sh
+
+      - name: Generating WG list
+         run: ./update_wg_allowips.sh
+
       - name: Update IP count in README.md
         run: |
           TOTAL_IPS=$(wc -l ipv?_list.txt | grep -oP '\d+(?=\s+total)')
