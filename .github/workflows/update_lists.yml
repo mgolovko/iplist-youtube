@@ -48,10 +48,10 @@ jobs:
         run: python3 ./generate_cidr.py
 
       - name: Generating Amnezia json
-         run: ./update_awg.sh
+        run: ./update_awg.sh
 
       - name: Generating WG list
-         run: ./update_wg_allowips.sh
+        run: ./update_wg_allowIps.sh
 
       - name: Update IP count in README.md
         run: |
@@ -62,7 +62,7 @@ jobs:
         run: |
           git config --local user.email '46617994+touhidurrr@users.noreply.github.com'
           git config --local user.name 'touhidurrr'
-          git add ipv?_list.txt cidr?.txt README.md
+          git add ipv?_list.txt cidr?.txt README.md wg_allowips.txt awg.json
           git commit -m 'Updated Lists [Automated]'
           git pull
           git push
