@@ -101,8 +101,7 @@ def download_facebook():
 
 def join_ips():
   with open("parsed", "w") as outfile:
-    # for file in ['youtubeparsed', 'facebook', 'myblock.txt']:
-    for file in ['myblock.txt']:
+    for file in ['youtubeparsed', 'facebook', 'myblock.txt']:
       with open(file, "r") as infile:
         outfile.write(infile.read())
         outfile.write("\n")
