@@ -76,3 +76,4 @@ ubi.com
 ubisoft.com
 ubisoft.org
 ubisoftconnect.com
+habr.com
